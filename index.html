@@ -11,23 +11,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:        #f5f4f0;
-    --surface:   #ffffff;
-    --surface2:  #f0ede8;
-    --border:    #e2ddd6;
-    --text:      #1a1814;
-    --muted:     #6b6560;
-    --hint:      #a09890;
-    --blue:      #1a5fa8;
-    --blue-bg:   #e8f0fb;
-    --blue-bar:  #1a5fa8;
-    --red:       #c0392b;
-    --red-bg:    #fbeaea;
-    --red-bar:   #c0392b;
-    --gold:      #b07d1a;
-    --silver:    #6b7280;
-    --bronze:    #8c5a2c;
-    --accent-border: #1a5fa8;
+    --bg:       #000000;
+    --surface:  #ffffff;
+    --surface2: #f6f6f7;
+    --border:   #e4e4e5;
+    --text:     #000000;
+    --muted:    #3a3a3c;
+    --hint:     #6b6b6e;
+    --blue:     #3470cb;
+    --blue-bg:  #eaf0fb;
+    --red:      #c0392b;
+    --red-bg:   #fbeaea;
+    --gold:     #c9921a;
+    --silver:   #8a8f9a;
+    --bronze:   #a0673a;
   }
 
   body {
@@ -35,7 +32,7 @@
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    padding: 24px 16px 40px;
+    padding: 28px 16px 48px;
   }
 
   .wrap {
@@ -43,34 +40,61 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
   }
 
-  /* Header */
-  .header {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 20px 18px;
-    border-top: 3px solid var(--blue);
-  }
-  .header h1 {
+  .tr-wordmark {
     font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 4px;
-  }
-  .header .week {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--text);
-    letter-spacing: 0.02em;
+    color: #ffffff;
+    text-align: left;
+    padding: 0 0 4px 22px;
+    opacity: 0.85;
+    margin-bottom: -8px;
   }
 
-  /* Card */
+  .header {
+    border-radius: 14px;
+    padding: 28px 22px 24px;
+    background: linear-gradient(155deg, #3470cb 0%, #022886 55%, #010f3a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(52,112,203,0.1) 0%, rgba(0,0,0,0.3) 100%);
+    border-radius: 14px;
+  }
+  .header-inner { position: relative; z-index: 1; }
+  .header h1 {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 8px;
+  }
+  .header .report-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .header .week-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -78,312 +102,125 @@
     padding: 18px 18px 16px;
   }
   .card-title {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--hint);
     margin-bottom: 14px;
   }
 
-  /* Metric row */
   .metric {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
     margin-bottom: 14px;
   }
   .metric:last-child { margin-bottom: 0; }
-  .metric-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-  .metric-label {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 500;
-  }
-  .metric-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 0.02em;
-  }
+  .metric-top { display: flex; justify-content: space-between; align-items: baseline; }
+  .metric-label { font-size: 15px; color: var(--muted); font-weight: 500; }
+  .metric-value { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 0.02em; }
   .metric-value.blue { color: var(--blue); }
   .metric-value.red  { color: var(--red); }
 
-  .metric-sub {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-  }
+  .metric-sub { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
   .metric-goal {
-    font-size: 11px;
+    font-size: 13px;
     color: var(--muted);
+    white-space: nowrap;
   }
-  .metric-pct {
-    font-size: 11px;
+  .metric-pct  {
+    font-size: 13px;
     font-weight: 600;
+    white-space: nowrap;
   }
   .metric-pct.blue { color: var(--blue); }
   .metric-pct.red  { color: var(--red); }
 
-  /* Progress bar */
-  .bar-track {
-    height: 4px;
-    background: var(--surface2);
-    border-radius: 2px;
-    overflow: hidden;
-    flex: 1;
-  }
-  .bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    transition: width 0.4s ease;
-  }
-  .bar-fill.blue { background: var(--blue-bar); }
-  .bar-fill.red  { background: var(--red-bar); }
+  .bar-track { height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; flex: 1; }
+  .bar-fill  { height: 100%; border-radius: 2px; }
+  .bar-fill.blue { background: var(--blue); }
+  .bar-fill.red  { background: var(--red); }
 
-  /* Activity grid */
-  .activity-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 0;
-  }
-  .act-cell {
-    background: var(--surface2);
-    border-radius: 10px;
-    padding: 12px 14px;
-  }
-  .act-cell.full { grid-column: 1 / -1; }
-  .act-label {
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 2px;
-  }
-  .act-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--text);
-    letter-spacing: 0.02em;
-    line-height: 1.1;
-  }
-  .act-goal {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-  .act-value.on { color: var(--blue); }
+  .activity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .act-cell { background: var(--surface2); border-radius: 10px; padding: 12px 14px; }
+  .act-label { font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
+  .act-value { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text); letter-spacing: 0.02em; line-height: 1.1; }
+  .act-goal  { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .act-value.on  { color: var(--blue); }
   .act-value.off { color: var(--red); }
 
-  /* Source table */
-  .src-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
+  .src-section-title {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
   }
-  .src-table tr {
-    border-bottom: 1px solid var(--surface2);
-  }
+  .src-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .src-table tr { border-bottom: 1px solid var(--surface2); }
   .src-table tr:last-child { border-bottom: none; }
-  .src-table td {
-    padding: 7px 0;
-    color: var(--muted);
-    vertical-align: middle;
-  }
-  .src-table td:last-child {
-    text-align: right;
-    font-weight: 500;
-    color: var(--text);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 15px;
-    letter-spacing: 0.02em;
-  }
-  .src-rev {
-    background: var(--blue-bg);
-    border-radius: 8px;
-    padding: 10px 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-  .src-rev-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--blue);
-  }
-  .src-rev-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    color: var(--blue);
-    letter-spacing: 0.02em;
-  }
+  .src-table td { padding: 7px 0; color: var(--hint); vertical-align: middle; }
+  .src-table td:last-child { text-align: right; color: var(--text); font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 0.02em; }
+  .src-rev { background: var(--blue-bg); border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+  .src-rev-label { font-size: 12px; font-weight: 600; color: var(--blue); }
+  .src-rev-value { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--blue); letter-spacing: 0.02em; }
 
-  /* Leaderboard */
-  .lb-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--surface2);
-  }
+  .lb-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--surface2); }
   .lb-row:last-child { border-bottom: none; }
-  .lb-rank {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    width: 24px;
-    text-align: center;
-    flex-shrink: 0;
-    letter-spacing: 0.02em;
-  }
+  .lb-rank { font-family: 'Bebas Neue', sans-serif; font-size: 22px; width: 24px; text-align: center; flex-shrink: 0; }
   .lb-rank.gold   { color: var(--gold); }
   .lb-rank.silver { color: var(--silver); }
   .lb-rank.bronze { color: var(--bronze); }
   .lb-info { flex: 1; min-width: 0; }
-  .lb-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .lb-sub {
-    font-size: 11px;
-    color: var(--hint);
-    margin-top: 1px;
-  }
-  .lb-rev {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 19px;
-    color: var(--text);
-    letter-spacing: 0.02em;
-    text-align: right;
-    flex-shrink: 0;
-  }
+  .lb-name { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lb-sub  { font-size: 11px; color: var(--hint); margin-top: 1px; }
+  .lb-rev  { font-family: 'Bebas Neue', sans-serif; font-size: 19px; color: var(--text); letter-spacing: 0.02em; text-align: right; flex-shrink: 0; }
 
-  /* Footer */
-  .footer {
-    text-align: center;
-    font-size: 11px;
-    color: var(--hint);
-    padding-top: 4px;
-  }
-
-  /* Section divider in source sections */
-  .src-section-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--blue);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--border);
-  }
+  .footer { text-align: center; font-size: 11px; color: #444; padding-top: 8px; letter-spacing: 0.03em; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- Header -->
+  <div class="tr-wordmark">Tony Robbins RPM</div>
+
   <div class="header">
-    <h1>RPM Weekly KPI Report</h1>
-    <div class="week">Apr 6–12, 2026</div>
+    <div class="header-inner">
+      <div class="report-title">TED Weekly KPI Report</div>
+      <div class="week-label">Week of Apr 6–12, 2026</div>
+    </div>
   </div>
 
-  <!-- Section 1: Total Performance -->
   <div class="card">
-    <div class="card-title">Total performance</div>
-
-    <!-- Total Sales -->
+    <div class="card-title">Sales performance</div>
     <div class="metric">
-      <div class="metric-top">
-        <span class="metric-label">Total Sales</span>
-        <span class="metric-value red">$143,885</span>
-      </div>
-      <div class="metric-sub">
-        <span class="metric-goal">Goal $218,977</span>
-        <div class="bar-track"><div class="bar-fill red" style="width:65.7%"></div></div>
-        <span class="metric-pct red">−34%</span>
-      </div>
+      <div class="metric-top"><span class="metric-label">Total Sales</span><span class="metric-value red">$143,885</span></div>
+      <div class="metric-sub"><span class="metric-goal">Goal $218,977</span><div class="bar-track"><div class="bar-fill red" style="width:65.7%"></div></div><span class="metric-pct red">−34%</span></div>
     </div>
-
-    <!-- Core Sales -->
     <div class="metric">
-      <div class="metric-top">
-        <span class="metric-label">Core Sales</span>
-        <span class="metric-value red">$113,910</span>
-      </div>
-      <div class="metric-sub">
-        <span class="metric-goal">Goal $189,000</span>
-        <div class="bar-track"><div class="bar-fill red" style="width:60.3%"></div></div>
-        <span class="metric-pct red">−40%</span>
-      </div>
+      <div class="metric-top"><span class="metric-label">Core Sales</span><span class="metric-value red">$113,910</span></div>
+      <div class="metric-sub"><span class="metric-goal">Goal $189,000</span><div class="bar-track"><div class="bar-fill red" style="width:60.3%"></div></div><span class="metric-pct red">−40%</span></div>
     </div>
-
-    <!-- Alumni Sales -->
     <div class="metric">
-      <div class="metric-top">
-        <span class="metric-label">Alumni Sales</span>
-        <span class="metric-value blue">$29,975</span>
-      </div>
-      <div class="metric-sub">
-        <span class="metric-goal">Goal $29,997</span>
-        <div class="bar-track"><div class="bar-fill blue" style="width:100%"></div></div>
-        <span class="metric-pct blue">on target</span>
-      </div>
+      <div class="metric-top"><span class="metric-label">Alumni Sales</span><span class="metric-value blue">$29,975</span></div>
+      <div class="metric-sub"><span class="metric-goal">Goal $29,997</span><div class="bar-track"><div class="bar-fill blue" style="width:100%"></div></div><span class="metric-pct blue">on target</span></div>
     </div>
-
-    <!-- DPL -->
     <div class="metric">
-      <div class="metric-top">
-        <span class="metric-label">DPL 6-Wk Avg</span>
-        <span class="metric-value red">$249</span>
-      </div>
-      <div class="metric-sub">
-        <span class="metric-goal">Goal $300</span>
-        <div class="bar-track"><div class="bar-fill red" style="width:83%"></div></div>
-        <span class="metric-pct red">−17%</span>
-      </div>
+      <div class="metric-top"><span class="metric-label">DPL 6-Wk Avg</span><span class="metric-value red">$249</span></div>
+      <div class="metric-sub"><span class="metric-goal">Goal $300</span><div class="bar-track"><div class="bar-fill red" style="width:83%"></div></div><span class="metric-pct red">−17%</span></div>
     </div>
   </div>
 
-  <!-- Section 2: Floor Activity -->
   <div class="card">
     <div class="card-title">Floor activity</div>
     <div class="activity-grid">
-      <div class="act-cell">
-        <div class="act-label">Leads Allocated</div>
-        <div class="act-value off">483</div>
-        <div class="act-goal">Goal: 630</div>
-      </div>
-      <div class="act-cell">
-        <div class="act-label">Leads / Rep</div>
-        <div class="act-value off">27</div>
-        <div class="act-goal">Goal: 35</div>
-      </div>
-      <div class="act-cell">
-        <div class="act-label">Active Reps</div>
-        <div class="act-value on">18</div>
-        <div class="act-goal">Goal: 18</div>
-      </div>
-      <div class="act-cell">
-        <div class="act-label">Conv Rate</div>
-        <div class="act-value">1.7%</div>
-        <div class="act-goal">Floor avg</div>
-      </div>
+      <div class="act-cell"><div class="act-label">Leads Allocated</div><div class="act-value off">483</div><div class="act-goal">Goal: 630</div></div>
+      <div class="act-cell"><div class="act-label">Leads / Rep</div><div class="act-value off">27</div><div class="act-goal">Goal: 35</div></div>
+      <div class="act-cell"><div class="act-label">Active Reps</div><div class="act-value on">18</div><div class="act-goal">Goal: 18</div></div>
+      <div class="act-cell"><div class="act-label">Conv Rate</div><div class="act-value">1.7%</div><div class="act-goal">Floor avg</div></div>
     </div>
   </div>
 
-  <!-- Section 3: RPM Funnel -->
   <div class="card">
     <div class="card-title">Lead sources</div>
-
     <div class="src-section-title">RPM Funnel</div>
     <table class="src-table">
       <tr><td>RPM Funnel Buyers</td><td>477</td></tr>
@@ -393,11 +230,7 @@
       <tr><td>Dial Pool</td><td>101</td></tr>
       <tr><td>DPL 6-Week Avg</td><td>$249</td></tr>
     </table>
-    <div class="src-rev">
-      <span class="src-rev-label">Revenue</span>
-      <span class="src-rev-value">$97,920</span>
-    </div>
-
+    <div class="src-rev"><span class="src-rev-label">Revenue</span><span class="src-rev-value">$97,920</span></div>
     <div style="margin-top: 18px;">
       <div class="src-section-title">Date With Destiny</div>
       <table class="src-table">
@@ -405,69 +238,22 @@
         <tr><td>Dial Pool</td><td>1</td></tr>
         <tr><td>DPL</td><td>n/a</td></tr>
       </table>
-      <div class="src-rev">
-        <span class="src-rev-label">Revenue</span>
-        <span class="src-rev-value">$31,975</span>
-      </div>
+      <div class="src-rev"><span class="src-rev-label">Revenue</span><span class="src-rev-value">$31,975</span></div>
     </div>
   </div>
 
-  <!-- Section 5: Top Performers This Week -->
   <div class="card">
     <div class="card-title">Top performers — this week</div>
-    <div class="lb-row">
-      <div class="lb-rank gold">1</div>
-      <div class="lb-info">
-        <div class="lb-name">Charles Garcia</div>
-        <div class="lb-sub">$437 DPL</div>
-      </div>
-      <div class="lb-rev">$25,980</div>
-    </div>
-    <div class="lb-row">
-      <div class="lb-rank silver">2</div>
-      <div class="lb-info">
-        <div class="lb-name">Brian Terry</div>
-        <div class="lb-sub">&nbsp;</div>
-      </div>
-      <div class="lb-rev">$23,980</div>
-    </div>
-    <div class="lb-row">
-      <div class="lb-rank bronze">3</div>
-      <div class="lb-info">
-        <div class="lb-name">Lokelani Costales</div>
-        <div class="lb-sub">&nbsp;</div>
-      </div>
-      <div class="lb-rev">$17,985</div>
-    </div>
+    <div class="lb-row"><div class="lb-rank gold">1</div><div class="lb-info"><div class="lb-name">Charles Garcia</div><div class="lb-sub">$437 DPL</div></div><div class="lb-rev">$25,980</div></div>
+    <div class="lb-row"><div class="lb-rank silver">2</div><div class="lb-info"><div class="lb-name">Brian Terry</div><div class="lb-sub">&nbsp;</div></div><div class="lb-rev">$23,980</div></div>
+    <div class="lb-row"><div class="lb-rank bronze">3</div><div class="lb-info"><div class="lb-name">Lokelani Costales</div><div class="lb-sub">&nbsp;</div></div><div class="lb-rev">$17,985</div></div>
   </div>
 
-  <!-- Section 6: Top Performers 6-Week Average -->
   <div class="card">
     <div class="card-title">Top performers — 6-week average</div>
-    <div class="lb-row">
-      <div class="lb-rank gold">1</div>
-      <div class="lb-info">
-        <div class="lb-name">Brian Terry</div>
-        <div class="lb-sub">per week</div>
-      </div>
-      <div class="lb-rev">$30,475</div>
-    </div>
-    <div class="lb-row">
-      <div class="lb-rank silver">2</div>
-      <div class="lb-info">
-        <div class="lb-name">Logan Inouye</div>
-        <div class="lb-sub">per week</div>
-      </div>
-      <div class="lb-rev">$15,987</div>
-    </div>
-    <div class="lb-row">
-      <div class="lb-rank bronze">3</div>
-      <div class="lb-info">
-        <div class="lb-name">Christin Frank</div>
-        <div class="lb-sub">per week</div>
-      </div>
-      <div class="lb-rev">$15,325</div>
-    </div>
+    <div class="lb-row"><div class="lb-rank gold">1</div><div class="lb-info"><div class="lb-name">Brian Terry</div><div class="lb-sub">per week</div></div><div class="lb-rev">$30,475</div></div>
+    <div class="lb-row"><div class="lb-rank silver">2</div><div class="lb-info"><div class="lb-name">Logan Inouye</div><div class="lb-sub">per week</div></div><div class="lb-rev">$15,987</div></div>
+    <div class="lb-row"><div class="lb-rank bronze">3</div><div class="lb-info"><div class="lb-name">Christin Frank</div><div class="lb-sub">per week</div></div><div class="lb-rev">$15,325</div></div>
   </div>
 
   <div class="footer">Generated by Claude · RPM Coaching CRM · Week of Apr 6–12, 2026</div>
